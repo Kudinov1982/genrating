@@ -12,9 +12,13 @@ app.use((req, res, next) => {
 
 app.post('/proxy', async (req, res) => {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxKlYSxbzsMSccatgQOam5egHyrf6EBeGALAvljRManYw72dnhPzH4pgQ1_gy2wAEzK/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyOeqmRR7EgCewXgiSIFE944FhUtKlBUfWRQo2_P1U6WuBfVKWmfi18iPgdqKY9c_PC/exec', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Origin': 'https://your-tilda-page.tilda.ws'
+            },
             body: JSON.stringify(req.body)
         });
         const data = await response.json();
@@ -26,7 +30,12 @@ app.post('/proxy', async (req, res) => {
 
 app.get('/proxy', async (req, res) => {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxKlYSxbzsMSccatgQOam5egHyrf6EBeGALAvljRManYw72dnhPzH4pgQ1_gy2wAEzK/exec');
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyOeqmRR7EgCewXgiSIFE944FhUtKlBUfWRQo2_P1U6WuBfVKWmfi18iPgdqKY9c_PC/exec', {
+            headers: { 
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Origin': 'https://metrics.tilda.ws/rating'
+            }
+        });
         const data = await response.json();
         res.json(data);
     } catch (error) {
